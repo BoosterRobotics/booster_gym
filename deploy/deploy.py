@@ -175,18 +175,19 @@ class Controller:
 
             self.filtered_dof_target = self.filtered_dof_target * 0.8 + self.dof_target * 0.2
 
+            motor_cmd = self.low_cmd.motor_cmd
             for i in range(B1JointCnt):
-                self.low_cmd.motor_cmd[i].q = self.filtered_dof_target[i]
+                motor_cmd[i].q = self.filtered_dof_target[i]
 
             # Use series-parallel conversion for torque to avoid non-linearity
             for i in self.cfg["mech"]["parallel_mech_indexes"]:
-                self.low_cmd.motor_cmd[i].q = self.dof_pos_latest[i]
-                self.low_cmd.motor_cmd[i].tau = np.clip(
+                motor_cmd[i].q = self.dof_pos_latest[i]
+                motor_cmd[i].tau = np.clip(
                     (self.filtered_dof_target[i] - self.dof_pos_latest[i]) * self.cfg["common"]["stiffness"][i],
                     -self.cfg["common"]["torque_limit"][i],
                     self.cfg["common"]["torque_limit"][i],
                 )
-                self.low_cmd.motor_cmd[i].kp = 0.0
+                motor_cmd[i].kp = 0.0
 
             start_time = time.perf_counter()
             self._send_cmd(self.low_cmd)
