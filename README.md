@@ -1,5 +1,12 @@
 # Booster Gym
 
+** **News** **: We now provide a new RL pipeline supporting K1 robot!
+- [Booster Train](https://github.com/BoosterRobotics/booster_train) trains a set of reinforcement learning tasks for Booster robots using [Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html).
+- [Booster Deploy](https://github.com/BoosterRobotics/booster_deploy) provides an easy-to-use deployment framework that enables seamlessly running the same policy code in both simulation and on real robots.
+- [Booster Assets](https://github.com/BoosterRobotics/booster_assets) provides Booster robot descriptions and example motion data.
+
+---
+
 Booster Gym is a reinforcement learning (RL) framework designed for humanoid robot locomotion developed by [Booster Robotics](https://boosterobotics.com/).
 
 [![real_T1_deploy](https://obs-cdn.boosterobotics.com/rl_deploy_demo_video_v3.gif)](https://obs-cdn.boosterobotics.com/rl_deploy_demo_video.mp4)
